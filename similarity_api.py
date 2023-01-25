@@ -18,10 +18,10 @@ def get_closest_users():
     user_array = user_array.drop(columns='user_id')
     suited_users = 'df of users passing conditions'
     suited_ids = 'id column from suited users'
-    suited_numeric = 'only rows with ids in suited ids from preprocessed df, without the id column'
+    suited_numeric = 'only rows with ids in suited ids from preprocessed df'
     distances = dict()
-    for user in suited_users:
-        distance = cityblock(user_array, user)
+    for user in suited_numeric:
+        distance = cityblock(user_array, user.drop(columns='user_id'))
         'insert to dictionary key:id of user value:distance'
     sorted_distances = sorted(distances.items(), key=lambda x: x[1])
     ids_by_distance = [i[0] for i in sorted_distances]

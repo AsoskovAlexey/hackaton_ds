@@ -1,0 +1,14 @@
+id int primry
+user_name string
+age int
+diet enum{mostly anything, vegetarian, vegan, kosher, halal, other}
+drinks enum{very often, often, socially, rarely, desperately, not at all}
+education enum{high school, two-year college, university, masters program, law school, med school, Ph.D program, other}
+ethnicity enum{Asian, middle eastern, black, native American, indian, pacific islander, Hispanic/latin, white, other}
+job enum{student, art/music/writing, banking/finance, administration, technology, construction, education, entertainment/media, management, hospitality, law, medicine, military, politics/government, sales/marketing, science/engineering, transportation, unemployed, other, rather not say, retire}
+cats enum{has, likes, dislikes}
+dogs enum{has, likes, dislikes}
+religion enum{agnosticism, atheism, Christianity, Judaism, Catholicism, Islam, Hinduism, Buddhism, Other}
+sex enum{m f}
+smokes enum{yes, sometimes, when drinking, trying to quit, no}
+languages ? list? many-to-many options: {}

@@ -16,8 +16,8 @@ def get_closest_users():
     user_id = request.args.get('user_id')
     user_array = numeric_df[numeric_df['user_id'] == user_id]
     user_array = user_array.drop(columns='user_id')
-    suited_users = 'df of users passing conditions'
-    suited_ids = 'id column from suited users'
+    suited_users = 'df of users passing conditions- use db_df'
+    suited_ids = 'id column from suited users- maybe can done directly in previous line'
     suited_numeric = 'only rows with ids in suited ids from preprocessed df'
     distances = dict()
     for user in suited_numeric:

@@ -4,8 +4,9 @@ from flask import Flask
 from flask import request
 app = Flask(__name__)
 
-df = pd.read_csv('file.csv')
-#open csv of dataset instead
+db_df = pd.read_csv('file.csv')
+numeric_df = pd.read_csv('file2.csv')
+
 
 #app will filter according to same language and location and different ethnicity (and id)
 #it will then calculate manhattan distance of user with all other users
@@ -13,11 +14,14 @@ df = pd.read_csv('file.csv')
 @app.route('/similar_users')
 def get_closest_users():
     user_id = request.args.get('user_id')
+    user_array = numeric_df[numeric_df['user_id'] == user_id]
+    user_array = user_array.drop(columns='user_id')
     suited_users = 'df of users passing conditions'
-    'preprocess suited users before calculating distances'
+    suited_ids = 'id column from suited users'
+    suited_numeric = 'only rows with ids in suited ids from preprocessed df, without the id column'
     distances = dict()
     for user in suited_users:
-        distance = cityblock(df[user_id==user_id], user)
+        distance = cityblock(user_array, user)
         'insert to dictionary key:id of user value:distance'
     sorted_distances = sorted(distances.items(), key=lambda x: x[1])
     ids_by_distance = [i[0] for i in sorted_distances]

@@ -18,7 +18,7 @@ def get_closest_users():
     user_num = int(request.args.get('user_num'))
     user_data = db_df.loc[db_df['user_id'] == user_id]
     user_array = numeric_df.loc[numeric_df['user_id'] == user_id]
-    suited_users = db_df.loc[(db_df['ethnicity'] != str(user_data['ethnicity']))]
+    suited_users = db_df.loc[(db_df['ethnicity'] != (str(user_data['ethnicity']))[2:])]
     print(suited_users)
     user_array = user_array.drop(columns='user_id')
     suited_numeric = numeric_df[~(numeric_df.user_id.isin(suited_users.user_id))]

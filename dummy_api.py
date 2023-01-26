@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 @app.route('/similar_users')
 def get_closest_users():
-    user_id = request.args.get('user_id')
-    user_num = request.args.get('user_num')
+    user_id = int(request.args.get('user_id'))
+    user_num = int(request.args.get('user_num'))
     ids_by_distance = [user_id][:user_num]
     return f'{ids_by_distance}'
 

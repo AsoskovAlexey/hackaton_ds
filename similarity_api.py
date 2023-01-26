@@ -14,6 +14,7 @@ numeric_df = pd.read_csv('preprocessed_data.csv.csv')
 @app.route('/similar_users')
 def get_closest_users():
     user_id = request.args.get('user_id')
+    user_num = request.args.get('user_num')
     user_array = numeric_df[numeric_df['user_id'] == user_id]
     suited_users = db_df[db_df['location'] == user_array['location']
                          & db_df['language'] == user_array['language']
@@ -27,7 +28,8 @@ def get_closest_users():
         distances[user['user_id']] = distance
     sorted_distances = sorted(distances.items(), key=lambda x: x[1])
     ids_by_distance = [i[0] for i in sorted_distances]
-    return f'{ids_by_distance}'
+    first_ids = ids_by_distance[:user_num]
+    return f'{first_ids}'
 
 
 if __name__ == '__main__':

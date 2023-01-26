@@ -16,11 +16,12 @@ numeric_df = pd.read_csv('preprocessed_data.csv.csv')
 def get_closest_users():
     user_id = request.args.get('user_id')
     user_num = request.args.get('user_num')
+    user_data = db_df[db_df['user_id'] == user_id]
     user_array = numeric_df[numeric_df['user_id'] == user_id]
-    suited_users = db_df[db_df['location'] == user_array['location']
-                         & db_df['language'] == user_array['language']
-                         & db_df['ethnicity'] != user_array['ethnicity']
-                         & db_df['user_id'] != user_array['user_id']]
+    suited_users = db_df[db_df['location'] == user_data['location']
+                         & db_df['language'] == user_data['language']
+                         & db_df['ethnicity'] != user_data['ethnicity']
+                         & db_df['user_id'] != user_data['user_id']]
     user_array = user_array.drop(columns='user_id')
     suited_numeric = numeric_df[~(numeric_df.user_id.isin(suited_users.user_id))]
     distances = dict()

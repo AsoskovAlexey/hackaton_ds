@@ -2,7 +2,10 @@ import pandas as pd
 from scipy.spatial.distance import cityblock
 from flask import Flask
 from flask import request
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 db_df = pd.read_csv('file.csv')
 numeric_df = pd.read_csv('preprocessed_data.csv.csv')

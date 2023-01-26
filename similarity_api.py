@@ -5,7 +5,7 @@ from flask import request
 app = Flask(__name__)
 
 db_df = pd.read_csv('file.csv')
-numeric_df = pd.read_csv('file2.csv')
+numeric_df = pd.read_csv('preprocessed_data.csv.csv')
 
 
 #app will filter according to same language and location and different ethnicity (and id)

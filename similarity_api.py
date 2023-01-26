@@ -17,8 +17,7 @@ def get_closest_users():
     user_array = numeric_df[numeric_df['user_id'] == user_id]
     user_array = user_array.drop(columns='user_id')
     suited_users = 'df of users passing conditions- use db_df'
-    suited_ids = 'id column from suited users- maybe can done directly in previous line'
-    suited_numeric = 'only rows with ids in suited ids from preprocessed df'
+    suited_numeric = numeric_df[~(numeric_df.user_id.isin(suited_users.user_id))]
     distances = dict()
     for user in suited_numeric:
         distance = cityblock(user_array, user.drop(columns='user_id'))
